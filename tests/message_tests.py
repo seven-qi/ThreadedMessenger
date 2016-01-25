@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
-Created on 2016-01-21 19:43
-@summary: 
-@author: sevensevens
-'''
+"""Unit test for Message class."""
 from nose.tools import assert_equal, raises
 from threadedmessenger.message import Message 
 
@@ -30,7 +26,7 @@ def test_message_content_type_error():
 
 def test_message():
     """
-    Test Message class.
+    Test if the Message constructor initializes an object with correct member variables.
     """
     message = Message(1, "Head of Message 1", "Content of Message 1")
     assert_equal(message.id, 1)
@@ -39,7 +35,7 @@ def test_message():
 
 def test_message_str():
     """
-    Test Message class.
+    Test if the string representaion of a message is correct.
     """
     message = Message(1, "Head of Message 1", "Content of Message 1")
     assert_equal(str(message), "1")

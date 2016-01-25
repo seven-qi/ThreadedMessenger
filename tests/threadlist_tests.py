@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
-Created on 2016-01-21 19:43
-@summary: 
-@author: sevensevens
-'''
+"""Unit test for ThreadList class."""
 from collections import deque, OrderedDict
 from StringIO import StringIO
 from nose.tools import assert_equal, raises
@@ -19,7 +15,7 @@ def test_threadlist_k_type_error():
 
 def test_threadlist():
     """
-    Test ThreadList class.
+    Test if the ThreadList constructor initializes an object with correct member variables.
     """
     threadlist = ThreadList(3)
 
@@ -45,7 +41,8 @@ def test_threadlist_add_thread_id_type_error():
 
 def test_threadlist_add():
     """
-    Test ThreadList class add method.
+    Test if a ThreaList object can add a message to the correct thread and move the
+        thread to the top of the list.
     """
     def compare_threads(messages, thread_ids, threadlist):
         """
@@ -90,44 +87,45 @@ def test_threadlist_display():
     """
     Test ThreadList class str method.
     """
+    # Create a new thread list that shows only the top 3 threads.
     threadlist = ThreadList(3)
 
-    # [7(13)]
+    # Add (M7, T13). State: [7(13)]
     message_13 = Message(13, "Head of Message 13", "Content of Message 13")
     threadlist.add(message_13, 7)
     out = StringIO()
     threadlist.display(out)
     assert_equal(out.getvalue().strip(), "[7(13)]")
 
-    # [99(5), 7(13)]
+    # Add (M5, T99). State: [99(5), 7(13)]
     message_5 = Message(5, "Head of Message 5", "Content of Message 5")
     threadlist.add(message_5, 99)
     out = StringIO()
     threadlist.display(out)
     assert_equal(out.getvalue().strip(), "[99(5), 7(13)]")
 
-    # [11(4), 99(5), 7(13)]
+    # Add (M4, T11). State: [11(4), 99(5), 7(13)]
     message_4 = Message(4, "Head of Message 4", "Content of Message 4")
     threadlist.add(message_4, 11)
     out = StringIO()
     threadlist.display(out)
     assert_equal(out.getvalue().strip(), "[11(4), 99(5), 7(13)]")
 
-    # [99(44, 5), 11(4), 7(13)]
+    # Add (M44, T99). State: [99(44, 5), 11(4), 7(13)]
     message_44 = Message(44, "Head of Message 44", "Content of Message 44")
     threadlist.add(message_44, 99)
     out = StringIO()
     threadlist.display(out)
     assert_equal(out.getvalue().strip(), "[99(44, 5), 11(4), 7(13)]")
 
-    # [1(1), 99(44, 55), 11(4), 7(13)] => [[1(1), 99(44, 55), 11(4)]
+    # Add (M1, T11). State: [1(1), 99(44, 55), 11(4), 7(13)] => [[1(1), 99(44, 55), 11(4)]
     message_1 = Message(1, "Head of Message 1", "Content of Message 1")
     threadlist.add(message_1, 1)
     out = StringIO()
     threadlist.display(out)
     assert_equal(out.getvalue().strip(), "[1(1), 99(44, 5), 11(4)]")
 
-    # [7(2, 13), 1(1), 99(44, 55), 11(4)] => [7(2, 13), 1(1), 99(44, 55)]
+    # Add (M2, T7). State: [7(2, 13), 1(1), 99(44, 55), 11(4)] => [7(2, 13), 1(1), 99(44, 55)]
     message_2 = Message(2, "Head of Message 2", "Content of Message 2")
     threadlist.add(message_2, 7)
     out = StringIO()

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """This module deals with the email threadlist."""
 
 import sys
@@ -35,7 +36,7 @@ class ThreadList(object):
 
     def add(self, message, thread_id):
         """
-        Add a message to a thread, and put the thread to the front of the queue.
+        Adds a message to a thread, and put the thread to the front of the queue.
         
         Args:
             message (str): The new message to be added to a thread.
@@ -69,4 +70,4 @@ class ThreadList(object):
         """
         if not isinstance(out, file) and not isinstance(out, StringIO):
             raise TypeError("out should be file type or StringIO, got " + str(type(out)))
-        out.write('[' + ', '.join([str(t[1]) for t in self._threads.items()[::-1][:self._display_size]]) + ']')
+        out.write('[' + ', '.join([str(t[1]) for t in self._threads.items()[::-1][:self._display_size]]) + ']\n')

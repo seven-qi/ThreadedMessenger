@@ -1,6 +1,5 @@
-"""
-Thread tests
-"""
+# -*- coding: utf-8 -*-
+"""Unit test for Thread class."""
 from collections import deque
 from nose.tools import assert_equal, raises
 from threadedmessenger.thread import Thread 
@@ -15,7 +14,7 @@ def test_thread_id_type_error():
 
 def test_thread():
     """
-    Test Thread class.
+    Test if the Thread constructor initializes an object with correct member variables.
     """
     thread = Thread(1)
     assert_equal(thread.id, 1)
@@ -31,7 +30,7 @@ def test_thread_add_type_error():
 
 def test_thread_add():
     """
-    Test Thread class add method.
+    Test if a Thread object can add a message to its message queue.
     """
     thread = Thread(1)
     message_11 = Message(11, "Head of Message 1", "Content of Message 1")
@@ -43,7 +42,7 @@ def test_thread_add():
 
 def test_thread_str():
     """
-    Test Thread class str method.
+    Test if the string representaion of a thread is correct
     """
     thread = Thread(1)
     message_11 = Message(11, "Head of Message 1", "Content of Message 11")
