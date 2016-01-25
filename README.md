@@ -55,6 +55,12 @@ State:
 
 ```
 
+## Logging
+I use spdlog (https://github.com/gabime/spdlog) to do the logging, but it turns out it's not quite compatible with the VS test framework so I disabled it by default.
+
+## Documentation
+Please go to <root_of_source>/docs/_build/html/ and open the index.html file. You should see a detailed documentation page.
+
 
 ## Installation
 Go to the root directory of this package. Simply do:
