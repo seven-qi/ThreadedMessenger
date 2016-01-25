@@ -56,7 +56,7 @@ State:
 ```
 
 ## Logging
-I use spdlog (https://github.com/gabime/spdlog) to do the logging, but it turns out it's not quite compatible with the VS test framework so I disabled it by default.
+I didn't do the logging for this python version but it's very simple to use the standard logging module to do that.
 
 ## Documentation
 Please go to <root_of_source>/docs/_build/html/ and open the index.html file. You should see a detailed documentation page.
