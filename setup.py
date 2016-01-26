@@ -6,12 +6,12 @@ except ImportError:
 config = {
     'description': 'This is a coding exc',
     'author': 'Jingwei Qi',
-    'url': 'N/A',
+    'url': 'https://github.com/seven-qi/ThreadedMessenger',
     'download_url': 'N/A',
     'author_email': 'seven.qi2011@gmail.com',
-    'version': '0.1',
+    'version': '0.0.1',
     'install_requires': ['nose'],
-    'packages': ['NAME'],
+    'packages': ['threadedmessenger'],
     'scripts': [],
     'name': 'threadedmessenger'
 }

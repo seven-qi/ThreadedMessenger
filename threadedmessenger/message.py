@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """This modules deals with the message in the email thread"""
+import logging
 
 class Message(object):
     """
@@ -17,6 +18,7 @@ class Message(object):
         Raises:
             TypeError: If any input arg is not in correct type, TypeError will be raised.
         """
+        logging.info("Trying to create message with id = %s ...", str(message_id))
         if not isinstance(message_id, int):
             raise TypeError("message_id should be int type, got " + str(type(message_id)))
         if not isinstance(head, str):
@@ -26,6 +28,7 @@ class Message(object):
         self._id = message_id 
         self._head = head 
         self._content = content
+        logging.info("Creates message_%s", str(message_id))
 
     @property
     def id(self):

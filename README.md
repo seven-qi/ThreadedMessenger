@@ -8,9 +8,9 @@ and store threads in a threadlist, all of them should be in the order of inserti
 #### Messenger Class
 Stores the m_id, m_head, and m_content
 #### Thread Class
-Uses a queue to stor the messages with the most recent ones at the front.
+Uses a queue to store the messages with the most recent ones at the front.
 #### ThreadList Class
-Inorder to keep track of the insertion order and be able to search the Thread object by its id, we need to use OrderedDict,
+In order to keep track of the insertion order and be able to search the Thread object by its id, we need to use OrderedDict,
 whose underlying implementation is a doubly linkedlist with each node as the value as a hash_map. 
 
 ### OO Design
@@ -124,6 +124,8 @@ Ran 17 tests in 0.014s
 OK
 
 ```
+
+
 
 
 

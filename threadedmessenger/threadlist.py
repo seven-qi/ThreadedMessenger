@@ -6,6 +6,8 @@ from collections import OrderedDict
 from StringIO import StringIO
 from threadedmessenger.message import Message
 from threadedmessenger.thread import Thread
+import logging
+
 class ThreadList(object):
     """
     A threadlist with a list of threads and only shows the most recent k threads.
@@ -20,15 +22,21 @@ class ThreadList(object):
         Raises:
             TypeError: If any input arg is not in correct type, TypeError will be raised.
         """
+        logging.info("Trying to create threadlist ...")
         if not isinstance(k, int):
             raise TypeError("k should be int type, got " + str(type(k)))
         self._display_size = k 
         self._threads = OrderedDict()
+        logging.info("Creates threadlist.")
 
     @property
     def display_size(self):
         return self._display_size
     
+    @display_size.setter
+    def display_size(k):
+        self._display_size = k
+
     @property
     def threads(self):
         return self._threads
@@ -45,6 +53,7 @@ class ThreadList(object):
         Raises:
             TypeError: If any input arg is not in correct type, TypeError will be raised.
         """
+        logging.info("Trying to add message_%s to threadlist ...", str(message) if message else "")
         if not isinstance(thread_id, int):
             raise TypeError("thread_id should be int type, got " + str(type(thread_id)))
         if not isinstance(message, Message):
@@ -56,6 +65,8 @@ class ThreadList(object):
             thread = Thread(thread_id)
             thread.add(message)
         self._threads[thread_id] = thread
+        logging.info("Added message_%s to threalist.", str(message) if message else "")
+
 
     def display(self, out=sys.stdout):
         """
@@ -68,6 +79,8 @@ class ThreadList(object):
         Raises:
             TypeError: If any input arg is not in correct type, TypeError will be raised.
         """
+        logging.info("Trying to display top %s threads ...", str(self._display_size))
         if not isinstance(out, file) and not isinstance(out, StringIO):
             raise TypeError("out should be file type or StringIO, got " + str(type(out)))
         out.write('[' + ', '.join([str(t[1]) for t in self._threads.items()[::-1][:self._display_size]]) + ']\n')
+        logging.info("Displays top %s threads.", str(self._display_size))

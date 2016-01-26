@@ -1,7 +1,12 @@
 from threadedmessenger.message import Message 
 from threadedmessenger.threadlist import ThreadList
+import logging
 
 def main():
+    logging.basicConfig(filename='logs/main.log', level=logging.INFO, 
+        format='%(asctime)s %(levelname)s: %(message)s')
+    logging.info("Welcome to Threaded Messenger!")
+    logging.info("Starts running main ...")
     """
     Test ThreadList class str method.
     """
@@ -59,6 +64,8 @@ def main():
     print "State: "
     threadlist.display()
     print ""
+
+    logging.info("Done running main ...")
 
 if __name__ == '__main__':
     main()
